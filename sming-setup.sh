@@ -55,7 +55,7 @@ make spiffy
 #install esptool.py
 echo Installing esptool.py
 cd $WORK_DIR
-sudo apt-get install python-serial unzip
+sudo apt-get install -y python-serial unzip
 wget https://github.com/themadinventor/esptool/archive/master.zip
 unzip master.zip
 mv esptool-master $WORK_DIR/esp-open-sdk/esptool
