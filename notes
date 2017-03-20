@@ -1,0 +1,11 @@
+Get the virtualbox version of trusty64 box for vagrant
+ vagrant box add ubuntu/trusty64
+Check if the vagrant mutate plugin is there
+ vagrant plugin list
+Install if needed
+ vagrant plugin install vagrant-mutate
+Mutate the vbox trusty64 box to libvirt usable box
+ vagrant mutate ubuntu/trusty64 libvirt
+Remove the vbox trusty box as it is not needed
+ vagrant box list
+ vagrant box remove ubuntu/trusty64 --provider=virtualbox

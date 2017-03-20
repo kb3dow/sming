@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "matjazp/ubuntu-trusty64"
+  config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = "rr-sming"
 
   # Disable automatic box update checking. If you disable this, then
@@ -69,6 +69,14 @@ Vagrant.configure(2) do |config|
   #
   # View the documentation for the provider you are using for more
   # information on available options.
+
+  config.vm.provider :libvirt do |domain|
+      domain.memory = 2048
+      domain.cpus = 2
+      #Ref: Vagrant libvirt bug
+      #https://github.com/vagrant-libvirt/vagrant-libvirt/issues/667
+      domain.cpu_mode = 'host-passthrough'
+  end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
   # such as FTP and Heroku are also available. See the documentation at
