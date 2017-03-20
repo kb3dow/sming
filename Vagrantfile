@@ -16,6 +16,14 @@ SCRIPT
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
+
+  node_name = 'rr-sming'
+  # set the name of the VM as shown by virsh/virt-manager
+  # Ref: https://github.com/vagrant-libvirt/vagrant-libvirt/issues/289
+  config.vm.define :'rr-sming' do |foo|
+  #
+  end
+
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -23,7 +31,7 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = "rr-sming"
+  config.vm.hostname = node_name
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -43,7 +51,7 @@ Vagrant.configure(2) do |config|
   # Bridged networks make the machine appear as another physical device on
   # your network.
   # config.vm.network "public_network"
-    config.vm.network :public_network,
+  config.vm.network :public_network,
       :dev => "br0",
       :type => "bridge",
       :use_dhcp_assigned_default_route => true
@@ -71,6 +79,7 @@ Vagrant.configure(2) do |config|
   # information on available options.
 
   config.vm.provider :libvirt do |domain|
+      domain.default_prefix = "VM"
       domain.memory = 2048
       domain.cpus = 2
       #Ref: Vagrant libvirt bug
@@ -92,5 +101,5 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
-    # config.vm.provision "shell", inline: gen_script
+  # config.vm.provision "shell", inline: gen_script
 end
